@@ -21,7 +21,7 @@ jobs:
       BREVO_LIST_ID: ${{ secrets.BREVO_LIST_ID }}
       BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
       BREVO_SENDER_NAME: ${{ secrets.BREVO_SENDER_NAME }}
-      AUTO_SEND: "false"
+      AUTO_SEND: "true"
 
     steps:
       - name: Récupérer le code du dépôt
