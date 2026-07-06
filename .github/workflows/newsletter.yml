@@ -3,7 +3,7 @@ name: Blog to Newsletter
 on:
   schedule:
     - cron: "*/15 * * * *"   # toutes les 15 minutes
-  workflow_dispatch: {}       # bouton pour lancer manuellement depuis l'onglet Actions
+  workflow_dispatch: {}
 
 permissions:
   contents: write   # nécessaire pour que le job puisse sauvegarder state.json
@@ -17,12 +17,11 @@ jobs:
       SITE_DB: ${{ secrets.SITE_DB }}
       SITE_USER: ${{ secrets.SITE_USER }}
       SITE_API_KEY: ${{ secrets.SITE_API_KEY }}
-      MAIL_URL: ${{ secrets.MAIL_URL }}
-      MAIL_DB: ${{ secrets.MAIL_DB }}
-      MAIL_USER: ${{ secrets.MAIL_USER }}
-      MAIL_API_KEY: ${{ secrets.MAIL_API_KEY }}
-      MAILING_LIST_ID: ${{ secrets.MAILING_LIST_ID }}
-      AUTO_SEND: "true"   # passe à "true" plus tard quand tu es confiant
+      BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+      BREVO_LIST_ID: ${{ secrets.BREVO_LIST_ID }}
+      BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
+      BREVO_SENDER_NAME: ${{ secrets.BREVO_SENDER_NAME }}
+      AUTO_SEND: "false"
 
     steps:
       - name: Récupérer le code du dépôt
@@ -32,6 +31,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install requests
 
       - name: Lancer le script
         run: python blog_to_newsletter.py
