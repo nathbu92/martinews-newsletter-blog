@@ -22,7 +22,7 @@ jobs:
       MAIL_USER: ${{ secrets.MAIL_USER }}
       MAIL_API_KEY: ${{ secrets.MAIL_API_KEY }}
       MAILING_LIST_ID: ${{ secrets.MAILING_LIST_ID }}
-      AUTO_SEND: "false"   # passe à "true" plus tard quand tu es confiant
+      AUTO_SEND: "true"   # passe à "true" plus tard quand tu es confiant
 
     steps:
       - name: Récupérer le code du dépôt
