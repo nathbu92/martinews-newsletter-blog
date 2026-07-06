@@ -143,7 +143,7 @@ def fetch_new_blog_posts(site_conn, processed_ids):
 
     fields = ["id", "name", "subtitle", "teaser", "website_url", "create_date"]
     posts = site_conn.execute(
-        "blog.post", "search_read", domain, fields, {"order": "create_date asc"}
+        "blog.post", "search_read", domain, fields, order="create_date asc"
     )
     return posts
 
